@@ -1,0 +1,11 @@
+#[solr]
+#precoinfo-api ansible_ssh_host=homolog-api.precoinfo.dropit.in ansible_ssh_user=ubuntu
+
+[webapp]
+precoinfo-webapp ansible_ssh_host=homolog.precoinfo.dropit.in ansible_ssh_user=ubuntu
+
+[database]
+precoinfo-api ansible_ssh_host=homolog-api.precoinfo.dropit.in ansible_ssh_user=ubuntu
+
+[drupal]
+precoinfo-api ansible_ssh_host=homolog-api.precoinfo.dropit.in ansible_ssh_user=ubuntu

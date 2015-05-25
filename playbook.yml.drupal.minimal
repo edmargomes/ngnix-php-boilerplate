@@ -1,0 +1,60 @@
+---
+- hosts: drupal
+  sudo: yes
+
+  vars:
+    drupal_path: "/home/vagrant/precoinfo-api/build"
+    www_owner: "vagrant"
+    www_group: "www-data"
+    enable_debug: no
+    skip_clone: true
+    nginx_http_params:
+      - types_hash_max_size "2048"
+      - types_hash_bucket_size "32"
+
+
+  pre_tasks:
+
+    - name: Create precoinfo-api folder.
+      file: >
+        path=/home/{{ drupal_www_owner }}/precoinfo-api
+        mode=6755 owner={{ drupal_www_owner }}
+        group=www-data
+        state=directory
+      when: skip_clone == false
+
+    - name: Install dependencies.
+      apt: "pkg={{item}}"
+      with_items:
+        - curl
+        - sendmail
+
+  roles:
+
+    # Install: PHP Composer.
+    - role: pbuyle.php-composer
+      composer_user: "{{ www_owner }}"
+      composer_user_home: "/home/{{ www_owner}}"
+
+    # Install: Drush.
+    - role: geerlingguy.drush
+
+    # Install: Drupal Project.
+    - role: taller.drupal-kw
+      drupal_path: /home/vagrant/precoinfo-api/build
+      drupal_project_path: /home/vagrant/precoinfo-api/
+      drupal_source: https://github.com/TallerWebSolutions/precoinfo-api.git
+      drupal_www_owner: vagrant
+      drupal_admin_password: "root"
+      drupal_admin_email: admin@localhost.com
+      drupal_kw_name: precoinfo_api
+      drupal_kw_human_name: Preço Info API
+      drupal_kw_skeleton_branch: "master"
+      drupal_db:
+        driver: mysql
+        user: "drupal"
+        password: "root"
+        database: "precoinfo_drupal"
+        host: "localhost"
+        port: ""
+        prefix: ""

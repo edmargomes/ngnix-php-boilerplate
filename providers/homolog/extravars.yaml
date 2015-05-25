@@ -1,0 +1,39 @@
+---
+www_owner: "ubuntu"
+www_group: "www-data"
+enable_debug: no
+drupal_path: "/home/{{ www_owner }}/precoinfo-api/build"
+drupal_mysql_drupal_user: "precoinfo_api"
+drupal_mysql_drupal_password: "oS#!sh@3niSg"
+drupal_mysql_database: "precoinfo_api"
+mysql_root_password: "s#3SH2s@gWm"
+nginx_log_dir: "/var/log/nginx"
+drupal_deploy_key: >
+  ssh-dss AAAAB3NzaC1kc3MAAACBAJZQwtrxqIrKMlgaY9EhlU4LiS+lmFVUAkdJrm2LdDIxYI4l04P6ID8xxUL0y9lEOrKEaGkkdVcw2ZTggonopo0tkrudLwuFGHUv1F0bd/wXiOH9EPXwXJJSEdqs4QnF0ntcUlwcU320Zq6tILSc0gfvh7kYgs8BzoV8Vj5PCWpXAAAAFQDOdZkBILFlJ2fVxfHv/hZt11xN1QAAAIBG80GKn0WnkOPMekMGNIyyFdLA63FcYhTDY4NCV1hnphH0tf1ZM4tfktYcDFlHym2aJkUguwwfeu1dk5drYZX7dNMfAPc5fKPOXXLOODu0XG5LhLPvguEFqftVw/RVB/fn3R1AAy6nDh2UuZ8VSydmeqfShtsFX2oppMmKKQwHLAAAAIByuIiavV6erq5GBb/QaZHxDai0eeS+/3/HI5e82MuHPQfeEyVRTwkzD7xDlLhAvyAkSF8rbB2vrPejUoVQpplRcn5eEs/uC7uzvpzkXSx3laxLUp/M8H+gInrYOUcoEgyeEblI43LVgjd17Fy8TWHwL+RBs/lpVIG90nxJRjOHvQ== tallerwebsolutions/precoinfo-api-sebas@taller.net.br
+
+app_user: "{{ www_owner }}"
+app_path: "/home/{{ www_owner }}/precoinfo-webapp"
+
+skip_clone: true
+
+drupal_project_path: "/home/{{ www_owner }}/precoinfo-api/"
+drupal_www_owner: "{{ www_owner }}"
+drupal_admin_password: "jaJKSjadsHv"
+drupal_project_branch: homolog
+drupal_db:
+  driver: mysql
+  user: "{{ drupal_mysql_drupal_user }}"
+  password: "{{ drupal_mysql_drupal_password }}"
+  database: "{{ drupal_mysql_database }}"
+  host: "localhost"
+  port: ""
+  prefix: ""
+
+nginx_drupal_sites:
+  - file_name: default
+    root: "{{ drupal_path }}"
+    http:
+      port: 80
+    server_name: "homolog-api.precoinfo.dropit.in"
+    default: true
+    not_allowed_methods: none

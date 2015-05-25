@@ -1,0 +1,5 @@
+[database]
+lab ansible_ssh_host=localhost ansible_ssh_port=2222
+
+[drupal]
+lab ansible_ssh_host=localhost ansible_ssh_port=2222

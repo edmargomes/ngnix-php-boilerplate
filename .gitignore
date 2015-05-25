@@ -1,0 +1,59 @@
+# Packages #
+############
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+*.svn
+
+# Logs and databases #
+######################
+databases/local/*
+
+# OS generated files #
+######################
+.DS_Store*
+*.Trash*
+ehthumbs.db
+Icon?
+Thumbs.db
+*.orig
+*.swo
+*cwatch.pid
+
+# Editors generated files #
+###########################
+.project
+.settings
+*~
+*.sublime-project
+*.sublime-workspace
+*.sublime-projectcompletions
+.Drupal.sublime-projectcomplections
+nbproject
+.buildpath
+.sass-cache
+
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Compiled files from SASS/Compass (optional) #
+#############################################
+# docroot/sites/*/themes/*/css/*
+# sites/*/themes/*/sass/images/sprites/*
+
+# Provisioning files #
+######################
+config.yml
+providers/*/.vagrant/
+roles/*
